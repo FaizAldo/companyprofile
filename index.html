@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Company Profile | Muhammad Faiz Aldo.F.Official & Faiz Aldo Game Pro ID</title>
+    <style>
+         :root {
+            --bg: #0f1115;
+            --bg-2: #161a22;
+            --text: #f4f6fb;
+            --muted: #b4bbcc;
+            --accent: #ffb000;
+            --accent-2: #3bd1c2;
+            --card: rgba(255, 255, 255, 0.05);
+            --stroke: rgba(255, 255, 255, 0.12);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: "Montserrat", "Trebuchet MS", "Segoe UI", sans-serif;
+            color: var(--text);
+            background: radial-gradient(1200px 600px at 15% -10%, #253048 0%, transparent 60%), radial-gradient(900px 500px at 90% 10%, #1a3a3a 0%, transparent 60%), linear-gradient(180deg, var(--bg), #0b0c10);
+        }
+        
+        .container {
+            width: min(1100px, 92vw);
+            margin: 0 auto;
+            padding: 28px 0 80px;
+        }
+        
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 12px 0 32px;
+        }
+        
+        .brand {
+            display: grid;
+            gap: 6px;
+        }
+        
+        .brand h1 {
+            margin: 0;
+            font-size: clamp(26px, 3.2vw, 44px);
+            letter-spacing: 0.6px;
+        }
+        
+        .brand p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        
+        .pill {
+            border: 1px solid var(--stroke);
+            color: var(--muted);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        
+        .hamburger {
+            display: inline-flex;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--stroke);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            border-radius: 10px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            line-height: 1;
+        }
+        
+        .sidebar-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            z-index: 18;
+            display: block;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(78vw, 320px);
+            height: 100vh;
+            background: linear-gradient(180deg, #121722, #0d111a);
+            border-left: 1px solid var(--stroke);
+            transform: translateX(100%);
+            transition: transform 0.28s ease;
+            z-index: 19;
+            padding: 18px 16px;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            gap: 18px;
+            display: grid;
+        }
+        
+        .sidebar-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .sidebar-title {
+            margin: 0;
+            font-size: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--accent-2);
+        }
+        
+        .sidebar-close {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--stroke);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+        }
+        
+        .sidebar-nav {
+            display: grid;
+            gap: 8px;
+            align-content: start;
+        }
+        
+        .sidebar-nav a {
+            text-decoration: none;
+            color: var(--text);
+            border: 1px solid var(--stroke);
+            border-radius: 10px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            font-size: 14px;
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        body.menu-open .sidebar {
+            transform: translateX(0);
+        }
+        
+        body.menu-open .sidebar-backdrop {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .hero {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            align-items: stretch;
+        }
+        
+        .hero-card {
+            background: var(--card);
+            border: 1px solid var(--stroke);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            min-height: 260px;
+            backdrop-filter: blur(6px);
+        }
+        
+        .hero-card h2 {
+            margin: 0 0 10px;
+            font-size: clamp(20px, 2.6vw, 32px);
+        }
+        
+        .hero-card p {
+            margin: 0 0 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+        
+        .cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        
+        .btn {
+            padding: 12px 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            font-size: 14px;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn.primary {
+            background: linear-gradient(135deg, var(--accent), #ff6a00);
+            color: #1b1200;
+            border-color: transparent;
+        }
+        
+        .btn.ghost {
+            border-color: var(--stroke);
+            color: var(--text);
+            background: transparent;
+        }
+        
+        .channel-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 12px;
+        }
+        
+        .channel-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            padding: 16px;
+            display: grid;
+            gap: 6px;
+        }
+        
+        .channel-card .badge {
+            font-size: 11px;
+            color: var(--accent-2);
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+        
+        .channel-card h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        .channel-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .photo-card {
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            padding: 14px;
+            background: var(--card);
+            box-shadow: var(--shadow);
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            aspect-ratio: 2560 / 423;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: linear-gradient(145deg, rgba(59, 209, 194, 0.25), rgba(255, 176, 0, 0.22));
+            display: grid;
+            place-items: center;
+            color: #f4f6fb;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 11px;
+            display: block;
+        }
+        
+        .photo-card h4 {
+            margin: 12px 0 6px;
+            font-size: 16px;
+        }
+        
+        .photo-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        
+        section {
+            margin-top: 38px;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            margin: 0 0 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent-2);
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        
+        .card {
+            background: var(--card);
+            border: 1px solid var(--stroke);
+            border-radius: 16px;
+            padding: 18px;
+            min-height: 140px;
+            box-shadow: var(--shadow);
+        }
+        
+        .card h4 {
+            margin: 0 0 8px;
+            font-size: 16px;
+        }
+        
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5;
+            font-size: 13px;
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        
+        .list {
+            display: grid;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .list li {
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--stroke);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+        
+        .contact-box {
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid var(--stroke);
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        }
+        
+        .contact-box h4 {
+            margin: 0 0 6px;
+        }
+        
+        .contact-box p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 12px;
+        }
+        
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact {
+                grid-template-columns: 1fr;
+            }
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            header {
+                align-items: center;
+            }
+            .pill {
+                display: none;
+            }
+            .brand {
+                width: 100%;
+            }
+            .hamburger {
+                display: inline-flex !important;
+            }
+            .sidebar {
+                display: grid;
+            }
+            .sidebar-backdrop {
+                display: block;
+            }
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            .channel-grid {
+                grid-template-columns: 1fr;
+            }
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebarMenu" aria-label="Sidebar Menu">
+        <div class="sidebar-top">
+            <h3 class="sidebar-title">Menu</h3>
+            <button class="sidebar-close" id="closeMenu" aria-label="Tutup Menu">x</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#top">Beranda</a>
+            <a href="#profil">Profil</a>
+            <a href="#foto">Foto Channel</a>
+            <a href="#visi-misi">Visi & Misi</a>
+            <a href="#layanan">Layanan</a>
+            <a href="#keunggulan">Keunggulan</a>
+            <a href="#kolaborasi">Kolaborasi</a>
+            <a href="#berita">Berita</a>
+            <a href="#channel">Link Channel</a>
+            <a href="#kontak">Kontak</a>
+        </nav>
+    </aside>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <h1>Muhammad Faiz Aldo.F.Official</h1>
+                <p>Company profile untuk dua channel kreator: edukasi, hiburan, dan komunitas gaming.</p>
+            </div>
+            <div class="pill">Channel Creator Profile</div>
+            <button class="hamburger" id="openMenu" aria-label="Buka Menu">&#9776;</button>
+        </header>
+
+        <section class="hero" id="profil">
+            <div class="hero-card">
+                <h2>Profil Singkat</h2>
+                <p>
+                    Muhammad Faiz Aldo.F.Official dan Faiz Aldo Game Pro ID menghadirkan konten yang memadukan informasi, hiburan, vlog harian, konten keagamaan, serta pengalaman bermain yang interaktif. Fokus utama adalah menghadirkan konten yang konsisten, ramah komunitas,
+                    dan relevan untuk audiens muda.
+                </p>
+                <div class="cta">
+                    <a class="btn primary" href="#kontak">Hubungi Kerja Sama</a>
+                    <a class="btn ghost" href="#layanan">Lihat Jenis Konten</a>
+                </div>
+            </div>
+            <div class="hero-card">
+                <h2>Dua Kanal Utama</h2>
+                <div class="channel-grid">
+                    <div class="channel-card">
+                        <div class="badge">Official Channel</div>
+                        <h3>Muhammad Faiz Aldo.F.Official</h3>
+                        <p>Konten edukatif, insight kreator, daily update, dan cerita personal yang membangun.</p>
+                    </div>
+                    <div class="channel-card">
+                        <div class="badge">Gaming Channel</div>
+                        <h3>Faiz Aldo Game Pro ID</h3>
+                        <p>Gameplay, strategi, dan hiburan komunitas untuk pecinta game kompetitif.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="foto">
+            <h3 class="section-title">Foto Channel</h3>
+            <div class="photo-grid">
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <img src="bannere-channel1.png" alt="Banner Channel 1 Muhammad Faiz Aldo.F.Official" />
+                    </div>
+                    <h4>Muhammad Faiz Aldo.F.Official</h4>
+                    <p>Banner channel 1 sudah disiapkan. Nama file yang dipakai: bannere-channel1.png</p>
+                </div>
+                <div class="photo-card">
+                    <div class="photo-placeholder">
+                        <img src="banner-channel2.png" alt="Banner Channel 2 Faiz Aldo Game Pro ID" />
+                    </div>
+                    <h4>Faiz Aldo Game Pro ID</h4>
+                    <p>Banner channel 2 sudah disiapkan. Nama file yang dipakai: banner-channel2.png</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="visi-misi">
+            <h3 class="section-title">Visi & Misi</h3>
+            <div class="two-col">
+                <div class="card">
+                    <h4>Visi</h4>
+                    <p>Menjadi channel kreator yang konsisten membangun komunitas positif dengan konten yang bernilai.</p>
+                </div>
+                <div class="card">
+                    <h4>Misi</h4>
+                    <p>Menyajikan konten berkualitas, berinteraksi aktif dengan audiens, dan menjalin kolaborasi kreatif.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="layanan">
+            <h3 class="section-title">Layanan & Jenis Konten</h3>
+            <div class="cards">
+                <div class="card">
+                    <h4>Video Edukatif</h4>
+                    <p>Tips kreator, pengembangan diri, dan konten motivasi yang ringkas serta aplikatif.</p>
+                </div>
+                <div class="card">
+                    <h4>Gaming & Live Session</h4>
+                    <p>Gameplay, review, dan sesi live dengan pendekatan komunitas yang ramah.</p>
+                </div>
+                <div class="card">
+                    <h4>Brand Collaboration</h4>
+                    <p>Kerja sama kreatif dengan brand untuk kampanye yang relevan dan tepat sasaran.</p>
+                </div>
+                <div class="card">
+                    <h4>Vlog Harian</h4>
+                    <p>Dokumentasi aktivitas, cerita keseharian, dan pengalaman kreator yang dekat dengan audiens.</p>
+                </div>
+                <div class="card">
+                    <h4>Konten Keagamaan</h4>
+                    <p>Konten reflektif dan edukatif bernuansa keagamaan dengan penyampaian ringan dan positif.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="keunggulan">
+            <h3 class="section-title">Keunggulan</h3>
+            <ul class="list">
+                <li>Identitas konten yang jelas dengan dua kanal yang saling melengkapi.</li>
+                <li>Fokus pada interaksi dan kepercayaan komunitas.</li>
+                <li>Format konten fleksibel: video pendek, live, dan storytelling.</li>
+                <li>Brand-safe dengan tone positif dan ramah keluarga.</li>
+            </ul>
+        </section>
+
+        <section id="kolaborasi">
+            <h3 class="section-title">Highlight Kolaborasi</h3>
+            <div class="cards">
+                <div class="card">
+                    <h4>Konten Sponsor</h4>
+                    <p>Segment terintegrasi yang menjaga alur cerita dan nilai kreatif.</p>
+                </div>
+                <div class="card">
+                    <h4>Produk & Review</h4>
+                    <p>Review jujur dan informatif untuk membangun kredibilitas audiens.</p>
+                </div>
+                <div class="card">
+                    <h4>Event & Community</h4>
+                    <p>Aktivasi online dan offline untuk memperkuat engagement.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="berita">
+            <h3 class="section-title">Berita Terbaru</h3>
+            <div class="cards">
+                <div class="card">
+                    <h4>Update Konten Mingguan</h4>
+                    <p>Rangkuman video terbaru dan agenda live minggu ini. (Placeholder)</p>
+                </div>
+                <div class="card">
+                    <h4>Kolaborasi Baru</h4>
+                    <p>Pengumuman kerja sama dan proyek kreatif yang sedang berjalan. (Placeholder)</p>
+                </div>
+                <div class="card">
+                    <h4>Event Komunitas</h4>
+                    <p>Jadwal event dan aktivitas komunitas untuk audiens. (Placeholder)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="channel">
+            <h3 class="section-title">Link Channel</h3>
+            <div class="cards">
+                <div class="card">
+                    <h4>Muhammad Faiz Aldo.F.Official</h4>
+                    <p>https://www.youtube.com/channel/UCmoE93pHKYt8Geri-ndcu3g</p>
+                    <div class="cta">
+                        <a class="btn ghost" href="https://www.youtube.com/channel/UCmoE93pHKYt8Geri-ndcu3g" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi channel Muhammad Faiz Aldo.F.Official">Buka Channel</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>Faiz Aldo Game Pro ID</h4>
+                    <p>https://www.youtube.com/channel/UCugibHQiub87VCBegmdYgkQ</p>
+                    <div class="cta">
+                        <a class="btn ghost" href="https://www.youtube.com/channel/UCugibHQiub87VCBegmdYgkQ" target="_blank" rel="noopener noreferrer" aria-label="Kunjungi channel Faiz Aldo Game Pro ID">Buka Channel</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="kontak">
+            <h3 class="section-title">Kontak & Call-to-Action</h3>
+            <div class="contact">
+                <div class="contact-box">
+                    <h4>Kerja Sama</h4>
+                    <p>Silakan hubungi untuk proposal kerja sama, campaign, atau sponsorship.</p>
+                    <p>Email: muhammadfaizaldo@gmail.com</p>
+                    <p>Email: muhammadfaizaldo.f.official@gmail.com</p>
+                </div>
+                <div class="contact-box">
+                    <h4>Social & Media Kit</h4>
+                    <p>Media kit tersedia berdasarkan permintaan untuk kebutuhan brand.</p>
+                    <p>WhatsApp: +62 81381144285</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 Muhammad Faiz Aldo.F.Official & Faiz Aldo Game Pro ID. All rights reserved.
+        </footer>
+    </div>
+    <script>
+        const openMenu = document.getElementById("openMenu");
+        const closeMenu = document.getElementById("closeMenu");
+        const backdrop = document.getElementById("sidebarBackdrop");
+        const menuLinks = document.querySelectorAll(".sidebar-nav a");
+
+        const closeSidebar = () => document.body.classList.remove("menu-open");
+        const openSidebar = () => document.body.classList.add("menu-open");
+
+        openMenu.addEventListener("click", openSidebar);
+        closeMenu.addEventListener("click", closeSidebar);
+        backdrop.addEventListener("click", closeSidebar);
+        menuLinks.forEach((link) => link.addEventListener("click", closeSidebar));
+    </script>
+</body>
+
+</html>
