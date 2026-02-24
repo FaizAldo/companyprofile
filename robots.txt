@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://faizaldo.github.io/companyprofile/sitemap.xml
