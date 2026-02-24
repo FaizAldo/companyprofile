@@ -823,10 +823,27 @@
 
         if (waFloat && waHint) {
             let waHintTimer;
-            waFloat.addEventListener("click", () => {
+            let waReadyToOpen = false;
+
+            const showWaHint = () => {
                 waHint.classList.add("show");
                 clearTimeout(waHintTimer);
-                waHintTimer = setTimeout(() => waHint.classList.remove("show"), 1600);
+                waHintTimer = setTimeout(() => {
+                    waHint.classList.remove("show");
+                    waReadyToOpen = false;
+                }, 1600);
+            };
+
+            waFloat.addEventListener("touchstart", (event) => {
+                if (!waReadyToOpen) {
+                    event.preventDefault();
+                    waReadyToOpen = true;
+                    showWaHint();
+                }
+            }, { passive: false });
+
+            waFloat.addEventListener("click", () => {
+                if (!waReadyToOpen) showWaHint();
             });
         }
     </script>
