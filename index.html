@@ -127,6 +127,10 @@
             justify-content: center;
             font-size: 20px;
             line-height: 1;
+            position: fixed;
+            top: 14px;
+            right: 14px;
+            z-index: 30;
         }
         
         .sidebar-backdrop {
@@ -451,6 +455,26 @@
             color: var(--muted);
             font-size: 12px;
         }
+
+        .wa-float {
+            position: fixed;
+            right: 14px;
+            bottom: 18px;
+            width: 54px;
+            height: 54px;
+            border-radius: 999px;
+            border: 1px solid rgba(16, 185, 129, 0.6);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 1), rgba(5, 150, 105, 1));
+            color: rgba(255, 255, 255, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 10px 20px rgba(5, 150, 105, 0.35);
+            z-index: 31;
+        }
         
         @media (max-width: 900px) {
             .hero {
@@ -492,6 +516,7 @@
             .hamburger {
                 display: inline-flex !important;
             }
+
             .sidebar {
                 display: grid;
             }
@@ -506,6 +531,10 @@
             }
             .photo-grid {
                 grid-template-columns: 1fr;
+            }
+            .wa-float {
+                right: 12px;
+                bottom: 14px;
             }
         }
     </style>
@@ -548,7 +577,7 @@
                 </div>
             </div>
             <div class="pill">Channel Creator Profile</div>
-            <button class="hamburger" id="openMenu" aria-label="Buka Menu">&#9776;</button>
+            <button class="hamburger" id="openMenu" aria-label="Buka Menu" aria-expanded="false" aria-controls="sidebarMenu">&#9776;</button>
         </header>
 
         <section class="hero" id="profil">
@@ -731,20 +760,35 @@
             &copy; 2026 Muhammad Faiz Aldo.F.Official & Faiz Aldo Game Pro ID. All rights reserved.
         </footer>
     </div>
+    <a class="wa-float" href="https://wa.me/6281381144285" target="_blank" rel="noopener noreferrer" aria-label="Hubungi via WhatsApp">WA</a>
     <script>
         const openMenu = document.getElementById("openMenu");
         const closeMenu = document.getElementById("closeMenu");
         const backdrop = document.getElementById("sidebarBackdrop");
         const menuLinks = document.querySelectorAll(".sidebar-nav a");
 
-        const closeSidebar = () => document.body.classList.remove("menu-open");
-        const openSidebar = () => document.body.classList.add("menu-open");
+        const isMenuOpen = () => document.body.classList.contains("menu-open");
+        const closeSidebar = () => {
+            document.body.classList.remove("menu-open");
+            if (openMenu) openMenu.setAttribute("aria-expanded", "false");
+        };
+        const openSidebar = () => {
+            document.body.classList.add("menu-open");
+            if (openMenu) openMenu.setAttribute("aria-expanded", "true");
+        };
+        const toggleSidebar = () => (isMenuOpen() ? closeSidebar() : openSidebar());
 
-        openMenu.addEventListener("click", openSidebar);
-        closeMenu.addEventListener("click", closeSidebar);
-        backdrop.addEventListener("click", closeSidebar);
+        if (openMenu) openMenu.addEventListener("click", toggleSidebar);
+        if (closeMenu) closeMenu.addEventListener("click", closeSidebar);
+        if (backdrop) backdrop.addEventListener("click", closeSidebar);
         menuLinks.forEach((link) => link.addEventListener("click", closeSidebar));
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && isMenuOpen()) closeSidebar();
+        });
     </script>
 </body>
 
 </html>
+
+
