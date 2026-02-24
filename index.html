@@ -392,6 +392,22 @@
             line-height: 1.5;
             font-size: 13px;
         }
+
+        .video-embed {
+            margin-top: 10px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--stroke);
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        .video-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
         
         .two-col {
             display: grid;
@@ -668,8 +684,11 @@
             <h3 class="section-title">Berita Terbaru</h3>
             <div class="cards">
                 <div class="card">
-                    <h4>Update Konten Mingguan</h4>
-                    <p>Rangkuman video terbaru dan agenda live minggu ini. (Placeholder)</p>
+                    <h4>Video Baru Faiz Aldo Game Pro ID</h4>
+                    <p>Rilis video terbaru dari channel gaming.</p>
+                    <div class="video-embed">
+                        <iframe src="https://www.youtube.com/embed/2Des8RZX2eU?si=4GOTrDxaGSSiVA7N" title="Video terbaru Faiz Aldo Game Pro ID" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
                 <div class="card">
                     <h4>Kolaborasi Baru</h4>
