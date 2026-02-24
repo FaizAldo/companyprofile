@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://faizaldo.github.io/companyprofile/sitemap.xml
+Sitemap: https://faizaldo.github.io/companyprofile/sitemap-index.xml
