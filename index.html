@@ -823,27 +823,27 @@
 
         if (waFloat && waHint) {
             let waHintTimer;
-            let waReadyToOpen = false;
+            let waArmed = false;
 
             const showWaHint = () => {
                 waHint.classList.add("show");
                 clearTimeout(waHintTimer);
                 waHintTimer = setTimeout(() => {
                     waHint.classList.remove("show");
-                    waReadyToOpen = false;
-                }, 1600);
+                    waArmed = false;
+                }, 1800);
             };
 
-            waFloat.addEventListener("touchstart", (event) => {
-                if (!waReadyToOpen) {
+            waFloat.addEventListener("click", (event) => {
+                if (!waArmed) {
                     event.preventDefault();
-                    waReadyToOpen = true;
+                    waArmed = true;
                     showWaHint();
+                    return;
                 }
-            }, { passive: false });
 
-            waFloat.addEventListener("click", () => {
-                if (!waReadyToOpen) showWaHint();
+                waArmed = false;
+                waHint.classList.remove("show");
             });
         }
     </script>
